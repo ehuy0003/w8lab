@@ -92,6 +92,17 @@ module.exports = {
                 });
             })
         });
+    },
+
+    //Q6 Retrieve (GET) all the movies produced between year1 and year2, where year1 > year2
+    between1And2: function (req, res) {
+        let yearOne = parseInt(req.params.year1);
+        let yearTwo = parseInt(req.params.year2);
+
+        Movie.find({$lte: yearOne, $gte: yearTwo}).exec(function(err, movie){
+            if (err) return res.status(400).json(err);
+            else res.json("GET successful!!!");
+        })
     }
 
 };

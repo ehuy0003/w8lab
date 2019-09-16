@@ -47,3 +47,5 @@ app.delete('/movies/:id',movies.deleteOne);
 app.post('/movies/:movieID/actorID', movies.removeActor);
 //Q5 add an existing actor to a list of actors in a movie
 app.post('/movies/removeActorFromMovie/:movieID/actor', movies.addActor);
+//Q6 Retrieve (GET) all the movies produced between year1 and year2, where year1 > year2
+app.get('/movies/betweenYears1&2/:year1/;year2', movies.between1And2);
