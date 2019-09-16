@@ -45,7 +45,7 @@ module.exports = {
         });
     },
 
-    //delete movie by ID
+    //Q1 delete movie by ID
     deleteOne: function (req, res) {
         Movie.findOneAndRemove({_id: req.params.id}, function(err){
             if(err)

@@ -30,6 +30,10 @@ app.get('/actors/:id', actors.getOne);
 app.put('/actors/:id', actors.updateOne);
 app.post('/actors/:id/movies', actors.addMovie);
 app.delete('/actors/:id', actors.deleteOne);
+//Q2 delete actors and all their movies
+app.delete('/actors/allMovies/:id', actors.deleteActorMovies);
+//Q3 remove a movie from the list of movies of an actor
+app.post('/actors/removeMovieFromList/:actorID/:movieID', actors.removeMovie);
 
 
 //Movie RESTFul  endpoints
@@ -37,4 +41,5 @@ app.get('/movies', movies.getAll);
 app.post('/movies', movies.createOne);
 app.get('/movies/:id', movies.getOne);
 app.put('/movies/:id', movies.updateOne);
+//Q1 Delete movie by ID 
 app.delete('/movies/:id',movies.deleteOne);
