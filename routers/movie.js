@@ -52,6 +52,27 @@ module.exports = {
                 return res.status(400).json(err);
                 res.json
         })
+    },
+
+    //Q4 remove an actor from a list of actors in a movie
+    removeMovie: function (req, res) {
+        let actorID = req.params.actorID;
+        let movieID = req.params.movieID;
+
+        Movie.findOne({ _id: movieID }, function (err, actor) {
+            if (err) return res.status(400).json(err);
+            if (!movie) return res.status(404).json();
+            Actor.findOne({ _id: actorID }, function (err, movie) {
+                if (err) return res.status(400).json(err);
+                if (!actor) return res.status(404).json();
+                movie.actors.pull(actor._id);
+                movie.save(function (err) {
+                    if (err) return res.status(500).json(err);
+                    res.json(actor);
+                });
+            })
+        })
     }
+    
 
 };

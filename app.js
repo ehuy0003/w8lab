@@ -43,3 +43,7 @@ app.get('/movies/:id', movies.getOne);
 app.put('/movies/:id', movies.updateOne);
 //Q1 Delete movie by ID 
 app.delete('/movies/:id',movies.deleteOne);
+//Q4 remove an actor from a list of actors in a movie
+app.post('/movies/:movieID/actorID', actors.removeActor);
+//Q5 add an existing actor to a list of actors in a movie
+app.post('/movies/removeActorFromMovie/:movieID/actor', actors.addActor);
