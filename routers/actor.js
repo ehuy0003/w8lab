@@ -122,6 +122,14 @@ module.exports = {
                 })
             )
         })
+    },
+
+    //Q7 Update the implementation such that the array of movies should contain the details of the movies instead of IDs
+    getAllNew: function(req, res) {
+        Actor.find().populate('movies').exec(function(req, actors){
+            if (err) return res.status(404).json(err);
+            else return res.json(actors);
+        })
     }
      
 };

@@ -34,7 +34,8 @@ app.delete('/actors/:id', actors.deleteOne);
 app.delete('/actors/allMovies/:id', actors.deleteActorMovies);
 //Q3 remove a movie from the list of movies of an actor
 app.post('/actors/removeMovieFromList/:actorID/:movieID', actors.removeMovie);
-
+//Q7 Update the implementation such that the array of movies should contain the details of the movies instead of IDs
+app.post('/actors/newGet', actors.getAllNew);
 
 //Movie RESTFul  endpoints
 app.get('/movies', movies.getAll);
