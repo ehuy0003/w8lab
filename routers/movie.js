@@ -68,11 +68,30 @@ module.exports = {
                 movie.actors.pull(actor._id);
                 movie.save(function (err) {
                     if (err) return res.status(500).json(err);
-                    res.json(actor);
+                    res.json(movie);
                 });
             })
         })
+    },
+
+    //Q5 add an existing actor to the list of actors in a movie
+    addActor: function (req, res) {
+        let actorID = req.params.actorID;
+        let movieID = req.params.movieID;
+
+        Movie.findOne({ _id: movieID }, function (err, actor) {
+            if (err) return res.status(400).json(err);
+            if (!movie) return res.status(404).json();
+            Actor.findOne({ _id: actorID }, function (err, movie) {
+                if (err) return res.status(400).json(err);
+                if (!actor) return res.status(404).json();
+                movie.actors.push(actor._id);
+                movie.save(function (err) {
+                    if (err) return res.status(500).json(err);
+                    res.json(movie);
+                });
+            })
+        });
     }
-    
 
 };
