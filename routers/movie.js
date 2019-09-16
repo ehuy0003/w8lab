@@ -103,6 +103,13 @@ module.exports = {
             if (err) return res.status(400).json(err);
             else res.json("GET successful!!!");
         })
-    }
+    },
 
+    //Q8 reimplement getAll movies such that it retrieves the details of all actors for each individual movie
+    getAllNew: function(req, res) {
+        Movie.find().populate('actor').exec(function(req, movies){
+            if (err) return res.status(404).json(err);
+            else return res.json(movies);
+        })
+    }
 };

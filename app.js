@@ -50,3 +50,5 @@ app.post('/movies/:movieID/actorID', movies.removeActor);
 app.post('/movies/removeActorFromMovie/:movieID/actor', movies.addActor);
 //Q6 Retrieve (GET) all the movies produced between year1 and year2, where year1 > year2
 app.get('/movies/betweenYears1&2/:year1/;year2', movies.between1And2);
+//Q8 reimplement getAll movies such that it retrieves the details of all actors for each individual movie
+app.get('/movies/newGet', movies.getAllNew);
