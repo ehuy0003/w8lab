@@ -43,5 +43,15 @@ module.exports = {
 
             res.json(movie);
         });
+    },
+
+    //delete movie by ID
+    deleteOne: function (req, res) {
+        Movie.findOneAndRemove({_id: req.params.id}, function(err){
+            if(err)
+                return res.status(400).json(err);
+                res.json
+        })
     }
+
 };
