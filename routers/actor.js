@@ -50,7 +50,7 @@ module.exports = {
         Actor.findOneAndRemove({ _id: req.params.id }, function (err) {
             if (err) return res.status(400).json(err);
 
-            res.json();
+            res.json("");
         });
     },
 
@@ -90,7 +90,7 @@ module.exports = {
                             if (err)
                                 res.json(err);
                             else
-                                res.return("Actor and their movies deleted!!!!")
+                                res.return("Actor and their movies deleted!!!!");
                     })
             })
         }) 
