@@ -67,7 +67,6 @@ module.exports = {
                 actor.movies.push(movie._id);
                 actor.save(function (err) {
                     if (err) return res.status(500).json(err);
-
                     res.json(actor);
                 });
             })
@@ -98,31 +97,26 @@ module.exports = {
 
     //Q3 Remove a movie from the list of movies of an actor
     removeMovie: function (req, res) {
-        // declare
         let actorID = req.params.actorID;
         let movieID = req.params.movieID;
-        // Find actor ID
-        Actor.findOne({ _id:actorID }).exec(function (err, actor) {
-            if (err){
-                res.status(400).json(err);
-                res.status(404).json(err);
-            } else (
-                // Then find movie ID
-                Movie.findOne({ _id:movieID }).exec(function (err, book){
-                    if (err) {
-                        res.status(400).json(err);
-                        res.status(404).json(err);
-                    } else {
-                        actor.movie.pull(movie._id);
-                        actor.save(function(err){
-                            if (err) res.json(err);
-                            else res.json("Movies Removed!!!");
-                        })
-                    }
-                })
-            )
+
+        Actor.findOne({ _id: actorID }, function (err, actor) {
+            if (err) return res.status(400).json(err);
+            if (!movie) return res.status(404).json();
+           
+            Movie.findOne({ _id: movieID }, function (err, movie) {
+                if (err) return res.status(400).json(err);
+                if (!actor) return res.status(404).json();
+                
+                actor.movies.pull(movie._id);
+                actor.save(function (err) {
+                    if (err) return res.status(500).json(err);
+                    res.json();
+                });
+            })
         })
     },
+
 
     //Q7 Update the implementation such that the array of movies should contain the details of the movies instead of IDs
     getAllNew: function(req, res) {
@@ -130,6 +124,14 @@ module.exports = {
             if (err) return res.status(404).json(err);
             else return res.json(actors);
         })
-    }
+    },
      
+    // extra task
+    deleteBelowFifteen: function (req, res) {
+        Actor.deleteMany({ bYear: {$gte: 2004}}).exec(function(req, actors){
+            if (err) return res.status(404).json(err);
+            else return res.json(actors);
+        })
+    }
+
 };

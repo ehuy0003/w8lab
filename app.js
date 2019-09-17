@@ -33,9 +33,10 @@ app.delete('/actors/:id', actors.deleteOne);
 //Q2 delete actors and all their movies
 app.delete('/actors/allMovies/:id', actors.deleteActorMovies);
 //Q3 remove a movie from the list of movies of an actor
-app.post('/actors/removeMovieFromList/:actorID/:movieID', actors.removeMovie);
+app.delete('/actors/removeMovieFromList/:actorID/:movieID', actors.removeMovie);
 //Q7 Update the implementation such that the array of movies should contain the details of the movies instead of IDs
 app.post('/actors/newGet', actors.getAllNew);
+app.delete('/actors/below15', actors.deleteBelowFifteen);
 
 //Movie RESTFul  endpoints
 app.get('/movies', movies.getAll);
@@ -47,7 +48,7 @@ app.delete('/movies/:id', movies.deleteOne);
 //Q4 remove an actor from a list of actors in a movie
 app.post('/movies/:movieID/:actorID', movies.removeActor);
 //Q5 add an existing actor to a list of actors in a movie
-app.post('/movies/:id/actors', movies.addActor);
+app.post('/movies/:id/actor', movies.addActor);
 //Q6 Retrieve (GET) all the movies produced between year1 and year2, where year1 > year2
 app.get('/movies/betweenYears1&2/:year1/;year2', movies.between1And2);
 //Q8 reimplement getAll movies such that it retrieves the details of all actors for each individual movie
